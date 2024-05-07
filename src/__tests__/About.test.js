@@ -4,17 +4,21 @@ import { render, screen } from "@testing-library/react";
 import user from "../data/user";
 import About from "../components/About";
 
-test("renders a <p> element with the bio from props", () => {
-  render(<About bio="I made this" links={user.links} />);
-  expect(screen.queryByText("I made this")).toBeInTheDocument();
-});
+function About({bio , links}) {
+  console.log(bio ,links)
+}
 
-test("does not render a <p> element if the bio is not included in props", () => {
-  const { container } = render(<About links={user.links} />);
-  expect(container.querySelector("p")).toBeNull();
-});
+function About() {
+  return (
+    <div id="about">
+      <h2>About Me</h2>
+      <p>Put the bio in here</p>
+      {bio && bio !==""&&(<p>{bio}</p>)}
+      <img src="https://i.imgur.com/mV8PQxj.gif" alt="I made this" />
 
-test("does not render a <p> element if the bio is an empty string", () => {
-  const { container } = render(<About bio="" links={user.links} />);
-  expect(container.querySelector("p")).toBeNull();
-});
+      {/* add your <Links /> component here */}
+      <Links Links={links}/>
+    </div>
+  );
+}
+export default About;

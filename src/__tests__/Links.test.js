@@ -3,6 +3,17 @@ import { render, screen } from "@testing-library/react";
 
 import Links from "../components/Links";
 
+function Links({ Links }) {
+  const { github, linkedin } = Links;
+
+  return (
+    <div>
+      <a href={github}>{github}</a>
+      <a href={linkedin}>{linkedin}</a>
+    </div>
+  );
+}
+
 test("renders the h3 with the text 'Links'", () => {
   render(<Links />);
   expect(screen.queryByText("Links")).toBeInTheDocument();
